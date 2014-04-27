@@ -9,10 +9,17 @@ Required software
 -----------------
 
 Emboss command line tools
+
 Blast+
+
 Entrez-direct
+
 python3 with optional package biopython installed
+
 T-Coffee
+
 RAxML 8
+
 TeXLive with optional package TeXshade installed
+
 R with optional packages xtable and knitr installed
