@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">
+<phylogeny rooted="true" rerootable="true">
+  <clade>
+    <clade>
+      <branch_length>0.096090069</branch_length>
+      <confidence type="unknown">100</confidence>
+      <clade>
+        <branch_length>0.168840241</branch_length>
+        <confidence type="unknown">31</confidence>
+        <clade>
+          <branch_length>0.146360014</branch_length>
+          <confidence type="unknown">37</confidence>
+          <clade>
+            <name>gi|518888192|ref|WP_020044067.1|</name>
+            <branch_length>0.842849756</branch_length>
+            <taxonomy>
+              <id provider="ncbi_taxonomy">939374</id>
+              <scientific_name>alpha proteobacterium SCGC AAA298-K06</scientific_name>
+              <rank>species</rank>
+            </taxonomy>
+          </clade>
+          <clade>
+            <branch_length>0.23175758</branch_length>
+            <confidence type="unknown">90</confidence>
+            <clade>
+              <name>gi|497514295|ref|WP_009828493.1|</name>
+              <branch_length>0.873686556</branch_length>
+              <taxonomy>
+                <id provider="ncbi_taxonomy">314270</id>
+                <scientific_name>Rhodobacteraceae bacterium HTCC2083</scientific_name>
+                <rank>species</rank>
+              </taxonomy>
+            </clade>
+            <clade>
+              <name>gi|518871802|ref|WP_020027677.1|</name>
+              <branch_length>0.444482449</branch_length>
+              <taxonomy>
+                <id provider="ncbi_taxonomy">1007117</id>
+                <scientific_name>gamma proteobacterium SCGC AAA076-F14</scientific_name>
+                <rank>species</rank>
+              </taxonomy>
+            </clade>
+          </clade>
+        </clade>
+        <clade>
+          <name>gi|460501329|gb|AGH13571.1|</name>
+          <branch_length>0.316325854</branch_length>
+          <taxonomy>
+            <id provider="ncbi_taxonomy">1256902</id>
+            <scientific_name>bacterium symbiont of Plakortis simplex pPS11G3</scientific_name>
+            <rank>species</rank>
+          </taxonomy>
+        </clade>
+      </clade>
+      <clade>
+        <branch_length>0.406217637</branch_length>
+        <confidence type="unknown">68</confidence>
+        <clade>
+          <name>gi|385809231|ref|YP_005845627.1|</name>
+          <branch_length>1.375117082</branch_length>
+          <taxonomy>
+            <id provider="ncbi_taxonomy">591197</id>
+            <scientific_name>Ignavibacterium album</scientific_name>
+            <rank>species</rank>
+          </taxonomy>
+        </clade>
+        <clade>
+          <branch_length>0.410756604</branch_length>
+          <confidence type="unknown">100</confidence>
+          <clade>
+            <branch_length>0.176236241</branch_length>
+            <confidence type="unknown">100</confidence>
+            <clade>
+              <branch_length>0.064435886</branch_length>
+              <confidence type="unknown">98</confidence>
+              <clade>
+                <name>gi|516678066|ref|WP_018036634.1|</name>
+                <branch_length>0.043006821</branch_length>
+                <taxonomy>
+                  <id provider="ncbi_taxonomy">1131277</id>
+                  <scientific_name>alpha proteobacterium SCGC AB-629-F11</scientific_name>
+                  <rank>species</rank>
+                </taxonomy>
+              </clade>
+              <clade>
+                <name>GOS_4466010_20_1</name>
+                <branch_length>0.114801452</branch_length>
+                <taxonomy>
+                  <id provider="uniprot">1</id>
+                </taxonomy>
+              </clade>
+            </clade>
+            <clade>
+              <branch_length>0.052386507</branch_length>
+              <confidence type="unknown">76</confidence>
+              <clade>
+                <branch_length>0.059970488</branch_length>
+                <confidence type="unknown">95</confidence>
+                <clade>
+                  <branch_length>0.019135505</branch_length>
+                  <confidence type="unknown">95</confidence>
+                  <clade>
+                    <name>gi|494055920|ref|WP_006998017.1|</name>
+                    <branch_length>0.002274</branch_length>
+                    <taxonomy>
+                      <id provider="ncbi_taxonomy">198252</id>
+                      <scientific_name>Candidatus Pelagibacter ubique</scientific_name>
+                      <rank>species</rank>
+                    </taxonomy>
+                  </clade>
+                  <clade>
+                    <branch_length>0.004649225</branch_length>
+                    <confidence type="unknown">81</confidence>
+                    <clade>
+                      <name>gi|71083953|ref|YP_266673.1|</name>
+                      <branch_length>0.002307722</branch_length>
+                      <taxonomy>
+                        <id provider="ncbi_taxonomy">198252</id>
+                        <scientific_name>Candidatus Pelagibacter ubique</scientific_name>
+                        <rank>species</rank>
+                      </taxonomy>
+                    </clade>
+                    <clade>
+                      <name>gi|519013695|ref|WP_020169570.1|</name>
+                      <branch_length>0.004609984</branch_length>
+                      <taxonomy>
+                        <id provider="ncbi_taxonomy">198252</id>
+                        <scientific_name>Candidatus Pelagibacter ubique</scientific_name>
+                        <rank>species</rank>
+                      </taxonomy>
+                    </clade>
+                  </clade>
+                </clade>
+                <clade>
+                  <branch_length>0.024884437</branch_length>
+                  <confidence type="unknown">81</confidence>
+                  <clade>
+                    <branch_length>0.011006103</branch_length>
+                    <confidence type="unknown">94</confidence>
+                    <clade>
+                      <name>gi|560891133|ref|WP_023648742.1|</name>
+                      <branch_length>0.008453471</branch_length>
+                      <taxonomy>
+                        <id provider="ncbi_taxonomy">198252</id>
+                        <scientific_name>Candidatus Pelagibacter ubique</scientific_name>
+                        <rank>species</rank>
+                      </taxonomy>
+                    </clade>
+                    <clade>
+                      <name>gi|495821508|ref|WP_008546087.1|</name>
+                      <branch_length>0.005466552</branch_length>
+                      <taxonomy>
+                        <id provider="ncbi_taxonomy">439493</id>
+                        <scientific_name>Candidatus Pelagibacter sp. HTCC7211</scientific_name>
+                        <rank>species</rank>
+                      </taxonomy>
+                    </clade>
+                  </clade>
+                  <clade>
+                    <branch_length>0.012683683</branch_length>
+                    <confidence type="unknown">69</confidence>
+                    <clade>
+                      <name>gi|564613018|ref|WP_023854142.1|</name>
+                      <branch_length>0.032383896</branch_length>
+                      <taxonomy>
+                        <id provider="ncbi_taxonomy">198252</id>
+                        <scientific_name>Candidatus Pelagibacter ubique</scientific_name>
+                        <rank>species</rank>
+                      </taxonomy>
+                    </clade>
+                    <clade>
+                      <name>gi|406706486|ref|YP_006756839.1|</name>
+                      <branch_length>0.077858902</branch_length>
+                      <taxonomy>
+                        <id provider="ncbi_taxonomy">859653</id>
+                        <scientific_name>alpha proteobacterium HIMB5</scientific_name>
+                        <rank>species</rank>
+                      </taxonomy>
+                    </clade>
+                  </clade>
+                </clade>
+              </clade>
+              <clade>
+                <branch_length>0.095186974</branch_length>
+                <confidence type="unknown">100</confidence>
+                <clade>
+                  <name>gi|167042027|gb|ABZ06763.1|</name>
+                  <branch_length>0.075631912</branch_length>
+                  <taxonomy>
+                    <id provider="ncbi_taxonomy">455525</id>
+                    <scientific_name>uncultured marine microorganism HF4000_141F21</scientific_name>
+                  </taxonomy>
+                </clade>
+                <clade>
+                  <name>gi|516680935|ref|WP_018039018.1|</name>
+                  <branch_length>0.036634616</branch_length>
+                  <taxonomy>
+                    <id provider="ncbi_taxonomy">1131276</id>
+                    <scientific_name>alpha proteobacterium SCGC AB-629-G21</scientific_name>
+                    <rank>species</rank>
+                  </taxonomy>
+                </clade>
+              </clade>
+            </clade>
+          </clade>
+          <clade>
+            <branch_length>0.232475965</branch_length>
+            <confidence type="unknown">100</confidence>
+            <clade>
+              <name>gi|518874111|ref|WP_020029986.1|</name>
+              <branch_length>0.060041191</branch_length>
+              <taxonomy>
+                <id provider="ncbi_taxonomy">1007119</id>
+                <scientific_name>gamma proteobacterium SCGC AAA076-P13</scientific_name>
+                <rank>species</rank>
+              </taxonomy>
+            </clade>
+            <clade>
+              <name>gi|518878544|ref|WP_020034419.1|</name>
+              <branch_length>0.085652312</branch_length>
+              <taxonomy>
+                <id provider="ncbi_taxonomy">939745</id>
+                <scientific_name>Oceanospirillales bacterium SCGC AAA298-N10</scientific_name>
+                <rank>species</rank>
+              </taxonomy>
+            </clade>
+          </clade>
+        </clade>
+      </clade>
+    </clade>
+    <clade>
+      <branch_length>0.096090069</branch_length>
+      <confidence type="unknown">100</confidence>
+      <clade>
+        <name>gi|497993039|ref|WP_010307195.1|</name>
+        <branch_length>0.216124</branch_length>
+        <taxonomy>
+          <id provider="ncbi_taxonomy">60894</id>
+          <scientific_name>Saccharopolyspora spinosa</scientific_name>
+          <rank>species</rank>
+        </taxonomy>
+      </clade>
+      <clade>
+        <branch_length>0.175047391</branch_length>
+        <confidence type="unknown">100</confidence>
+        <clade>
+          <name>gi|518641969|ref|WP_019812057.1|</name>
+          <branch_length>0.14155</branch_length>
+          <taxonomy>
+            <id provider="ncbi_taxonomy">129922</id>
+            <scientific_name>Saccharomonospora halophila</scientific_name>
+            <rank>species</rank>
+          </taxonomy>
+        </clade>
+        <clade>
+          <name>gi|491590623|ref|WP_005448189.1|</name>
+          <branch_length>0.166096563</branch_length>
+          <taxonomy>
+            <id provider="ncbi_taxonomy">40988</id>
+            <scientific_name>Saccharomonospora azurea</scientific_name>
+            <rank>species</rank>
+          </taxonomy>
+        </clade>
+      </clade>
+    </clade>
+  </clade>
+</phylogeny>
+</phyloxml>

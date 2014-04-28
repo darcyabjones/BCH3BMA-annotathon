@@ -1,0 +1,329 @@
+
+\documentclass[10px, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{lstautogobble}
+\usepackage[tableposition=top]{caption}
+\usepackage{ifthen}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{float}
+\usepackage{texshade}
+\usepackage{hyperref}
+\usepackage[round]{natbib}
+\usepackage{fullpage}
+\usepackage{pdflscape}
+
+
+
+\lstdefinestyle{fasta}{
+	frame=single, 
+	linewidth=85ex,
+	breaklines=true,
+	tabsize=2,
+	basicstyle=\small%\footnotesize,
+	} 
+
+\begin{document}
+
+\title{Annotathon Report}
+\author{Darcy Jones - 17369904}
+%\maketitle
+
+<<echo=FALSE>>=
+options(width=50)
+@
+
+\noindent{\Large Annotathon Report}
+
+\noindent\hrulefill
+
+\noindent\textbf{Name:} Darcy Jones \hfill \textbf{Student Number:} 17369904
+\begin{description}
+\item[\textbf{Annotathon Code:}] GOS\_4466010.1
+\item[\textbf{Sample Information}]:
+
+Sargasso Sea: Sargasso Sea, Station 3 (Bermuda (UK))
+
+GPS: $32^{\circ}10'29.4n; 64^{\circ}00'36.6w$
+
+Sampled on 02/25/03 at 01:00:00
+
+Filtered to: 0.22-0.8 microns
+
+Habitat: Open Ocean 
+
+Depth: 5m (Sea floor: $>4200$m) 
+
+Temperature: $19.8\,^{\circ}\mathrm{C}$
+
+\item[\textbf{Genomic Sequence}]:
+
+\lstinputlisting[style=fasta, firstline=1]{sequences/sequence.fa}
+
+\item[\textbf{Translation Used}]:
+
+The longest potential open reading frame (ORF) found was 681 nucleotides long (227 amino acids) in the negative (reverse) strand of the genomic sequence from 264--944 (inclusive). It is missing $5'$ DNA sequence, and hence a start codon, which would extend past the $3'$ end of the given genomic DNA.
+
+\item[\textbf{Translated Sequence}]:
+\lstinputlisting[style=fasta, firstline=2]{sequences/sequence_longest_orf.fa}
+%Commentary on translation
+
+Using the ORF selection criteria of \textgreater 60 nucleotides with no stop codons there were 23 other potential open reading frames found in the sequence. 
+One other potential ORF gave a single significant BLAST hit (Data not shown). 
+The best candidate ORF, GOS\_4466010\_20 (shown above), was chosen because it was the longest of the potential ORF set and had the highest number of significant BLAST hits.
+
+Initially, the complete (with both a start and stop codon) open reading frame on the negative strand from 857--264 was selected as the best candidate. 
+However, after constructing the multiple sequence alignment it seemed likely that the start codon was upstream of the genomic sequence (See figure \ref{fig:blastMSA}) and the stop to stop codon model of an ORF was adopted.
+
+All ORF predictions were conducted using EMBOSS tools' `getorf' program \citep{Rice2000}.
+
+\end{description}
+\newpage
+\section*{BLAST data}
+
+Homologues for the selected ORF, GOS\_4466010\_20, were found in the NCBI non-redundant (nr) protein database using the basic local alignment search tool (BLAST) protein algorithm \citep{Altschul1990a,Camacho2009}. 
+239 sequences significant (e-value $ \leq 10^{-8} $) matches were found, with the 10 most similar matches all being glycine cleavage system protein T partial matches (Table \ref{tab:BLASTSummary}). 
+
+<<BLASTSummary, results='asis', echo=FALSE, size='small'>>=
+num.display <- 10
+require(xtable, quietly=TRUE)
+blast.results <- read.table("./blast/sequence_longest_orf.tsv", sep='\t', header=TRUE)
+i<-1
+titles <- c()
+while(i<=num.display){
+	titles <- c(titles, paste(substr(factor(blast.results[,'title'])[i],1,42), "..."))
+	i=i+1
+	}
+blast.results[,'title'] <- titles
+blast.results.display <- xtable(blast.results[1:num.display,c('gi','accession','evalue','score','title')], floating=FALSE, size='small', label="tab:BLASTSummary", align=c("l","l","l","c","c","l"), display=c("d","d","s","e","d","s"), digits=1,caption='Showing the 10 highest scoring (by evalue) BLASTp hits to the longest ORF in GOS\\_4466010.1')
+print(blast.results.display, caption.placement='top', include.rownames=FALSE)
+@
+
+The 10 highest scoring hits with unique taxonomic identifiers from the BLASTp search and the GOS\_4466010\_20 sequence were aligned using the T-Coffee algorithm \citep{Notredame2000a} to find conserved regions and evaluate the likelihood that the potential ORF is part of a protein coding gene (Figure \ref{fig:blastMSA}).
+The alignment shows a high degree of conservation between predicted homologues and GOS\_4466010\_20, with few regions less than $ 50\% $ similar.
+The alignment also indicates that it is likely that the ORF is missing $5'$ DNA in the given genomic sequence and that the ORF is potentially another full length glycine cleavage protein.
+Regardless of whether the missing upstream DNA is the same as the presented homologue's, the ORF GOS\_4466010\_20 is highly likely to be part of a protein coding gene or pseudogene.
+
+%Commentary on the BLAST data (maximum 100 words)
+%How confident are you about the BLAST data – remember to quote relevant scores and E-values.  Has this protein ever been sequenced before? What is the percentage identity to the nearest homologues?
+
+Given the large number of significant BLAST hits, and the low e-values, high bit-scores and consistency of protein function in the top hits, these BLAST results appear to be representative of the putative protein. 
+The highest scoring BLAST hit, gi\textbar 516678066\textbar ref\textbar WP\textbar 018036634 had $ 85 \% $ sequence identity to GOS\_4466010\_20 which indicates strongly that the potential ORF is closely related to proteobacterium glycine cleavage system protein T.
+
+\begin{landscape}
+\begin{figure}[p]
+\begin{texshade}{blast/sequences_msa.fa}
+	\seqtype{P}
+	\namecolor{11}{Red}
+	\shadingmode[standard area]{similar}
+	\threshold[80]{50}
+	\hideconsensus
+	\gaprule{0.5pt}
+	\setsize{residues}{scriptsize}
+	\setsize{names}{scriptsize}
+	\setsize{numbering}{scriptsize}
+	\showlegend
+\end{texshade}
+\caption{A multiple sequence alignment of the top 10 BLASTp hits with the query sequence GOS\_4466010\_20 (highlighted in red)}
+\label{fig:blastMSA}
+\end{figure}
+\end{landscape}
+
+\section*{Biological Function}
+
+To predict the function of any potential protein product ofGOS\_4466010\_20, the NCBI conserved domain database was searched using the Reverse Position-Specific (RPS)-BLAST algorithm \citep{Camacho2009,Marchler-Bauer2011}. 
+Eight significant (e-value $ \leq 10^{-6} $) hits, were found with two single conserved domain matches: Glycine cleavage T-protein C-terminal barrel domain (pfam08669), and Aminomethyltransferase folate-binding domain (pfam01571) (Table \ref{tab:CDSSummary}).
+Six multi-domain conserved protein profiles were also detected with three biological functions: glycine cleavage (COG0404), sarcosine oxidation (TIGR01372) and sulphur flux regulation (PRK12486).\newline
+Aminomethyltransferase (AKA Glycine Cleavage System T protein, GCST protein) is a part of the glycine cleavage system, which catalyses the decarboxylation of glycine in bacteria and mitochondria \citep{Lee2004}. This enzyme contains both the GCST-protein C-terminal barrel domain and Aminomethyltransferase folate-binding domain found in GOS\_4466010\_20.
+Sarcosine oxidase catalyses the oxidative demethylation of sarcosine to glycine, which involves a folate-binding domain \citep{Suzuki1994}.\newline
+Dimethyl sulphoniopropionate demethylase, an enzyme involved in marine bacterial sulphur regulation, reversibly catalyses the conversion of dimethylsulphoniopropionate to sulphur and dimethylsulphide \citep{Vila-Costa2006}. 
+Some bacterioplankton GCST-family proteins have been found to have Dimethyl sulphoniopropionate methyltransferase activity, which would explain the presence of this multi-domain match to GOS\_4466010\_20 \citep{Howard2006}.
+
+%The match to pfam08669 is a Glycine cleavage T-protein C-terminal barrel domain, and contains the complete conserved domain sequence. Partial matches to pfam01571 Aminomethyltransferase folate-binding domain superfamily, and the multi-domain Glycine cleavage system T protein conserved signature were also found.
+
+<<CDSSummary, echo=FALSE, results='asis', size='small'>>=
+require(xtable, quietly=TRUE)
+blast.results.2 <- read.table("./function/sequence_longest_orf_cdd.tsv", sep='\t', header=TRUE)
+i <- 1
+titles.2 <- c()
+while(i<=length(factor(blast.results.2[,'title']))){
+	titles.2 <- c(titles.2, paste(substr(factor(blast.results.2[,'title'])[i],1,50), "..."))
+	i=i+1
+	}
+blast.results.2[,'title'] <- titles.2
+blast.results.display.2 <- xtable(blast.results.2[blast.results.2$evalue <= 1e-6,c('id','evalue','score','title')], floating=FALSE, size='small', label="tab:CDSSummary", align=c("l","l","c","c","l"), display=c("d","s","e","d","s"), digits=1,caption='Showing all significant hits from an RPS-BLAST search of the NCBI conserved domain database.')
+print(blast.results.display.2, caption.placement='top', include.rownames=FALSE)
+@
+
+Given that the aminomethyltransferase protein contains both conserved single-domain matches to GOS\_4466010\_20, and that the dimethyl sulphoniopropionate methyltransferase multi-domain match appears to be related to a secondary function of aminomethyltransferase, it seems likely that the putative protein GOS\_4466010\_20 has aminomethyltransferase-like activity. 
+Figure \ref{fig:domains} shows the position of the aminomethyltransferase multi-domain patial match and the two single functional domain matches for the candidate ORF. The partial matches for COG0404 and pfam01571 conserved domains limited by the missing amino acid information toward the N-terminus. It is possible that these domains do exist in their complete form in the complete ORF if one exists.
+
+\begin{figure}
+\begin{texshade}{sequences/sequence_longest_orf.fa}
+	\seqtype{P}
+	\shadingmode[hydropathy]{functional}
+	
+	\feature{bottom}{1}{93..209}{'-'}{pfam08669} %Glycine cleavage T-protein C-terminal barrel domain.
+	\feature{bottom}{1}{16..78}{|-'}{pfam01571 - partial} %Aminomethyltransferase folate-binding domain.
+	\feature{top}{1}{16..211}{|-,}{COG0404 - partial} %Glycine cleavage system T protein (aminomethyltransferase) [Amino acid transport and metabolism]
+	\showruler{top}{1}
+	\setsize{residues}{small}
+	\hidenames
+	\hidenumbering
+	\hideconsensus
+	\showlegend
+\end{texshade}
+\caption{The GOS\_4466010\_20 sequence showing matches to: Glycine cleavage T-protein C-terminal barrel domain (pfam08669), Aminomethyltransferase folate-binding domain superfamily (pfam01571), and multi-domain Glycine cleavage system T protein (COG0404). Full bar ends represent incomplete domain match boundaries, half bar ends represent complete domain match boundaries.}
+\label{fig:domains}
+\end{figure}
+
+To find more information about the likely structure and function of the putative protein product of GOS\_4466010\_20, the sequence was BLASTp searched against the curated Swiss-Prot database and the highest scoring homologue was used in place of the incomplete ORF.
+The highest scoring hit was Aminomethyltransferase (EC:2.1.2.10, ACC:Q67N36) from \textit{Symbiobacterium thermophilum}, which is consistent with functional predictions from previous BLASTp and conserved domain analyses.
+The homologue is an 375 AA long cytosolic protein, and is part of the glycine cleavage system which catalyzes the degradation of glycine \citep{Ueda2004}.
+The protein has a predicted molecular weight (average mass) of 41.243 kDa and an isoelectric point (pI) of 5.51 \citep[Predicted using ExPASy `Compute pI/Mw tool' available at \href{http://web.expasy.org/compute_pi/}{web.expasy.org/compute\_pi/};][]{Gasteiger2005}.
+
+%Protein domains and structure (maximum 2 pages of figures and text)
+%This section will need to be completed with judicial use of supporting figures and text.  Indicate which websites/databases were used to make any predictions.
+%Can you infer anything about conserved functional domains of your putative protein either directly by analysing the primary sequence and/or by comparison to related proteins?  Does your protein belong to any families or super-families of proteins based on conserved domains?
+
+%What is known about the structure? If you have a complete protein what is the MW and isoelectric point?  If your protein is incomplete what are the values for the nearest homologue?  If your protein is incomplete could we predict what is missing based on the sequence of nearest homologues?  Is there a cellular localization signal - can you predict where in the cell this protein belongs?
+
+%Assuming its structure has not been resolved - what can we infer about the 3D structure of your putative protein if anything?
+
+An homology modelled protein structure (figure \ref{fig:structure}) is available for the Aminomethyltransferase homologue (pdb:1yx2A) which shows a globular protein with two functional domains; the Aminomethyltransferase folate-binding domain and the Glycine cleavage T-protein C-terminal barrel \citep{Kiefer2009}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{function/vmdscene.pdf}
+% This figure was generated using VMD
+\end{center}
+\caption{The predicted structure of Aminomethyltransferase ACC:Q67N36 showing a globular protein (pdb:1yx2A). The aligned region of GOS\_4466010\_20 corresponds to the region highlighted in green. The Aminomethyltransferase folate-binding domain is on the left, from residues 49--267. The Glycine cleavage T-protein C-terminal barrel is to the right, from residues 275--366.}
+\label{fig:structure}
+\end{figure}
+
+The probable function and identity of the GOS\_4466010\_20 sequences as an Aminomethyltransferase, is supported by high sequence homology from three separate protein databases (nr protein, CDD and Swiss-Prot). 
+It is highly likely that the product of GOS\_4466010\_20 would be an Aminomethyltransferase or a related protein, if the gene is complete.
+
+\section*{Phylogenetics}
+%Phylogenetics (maximum 1 page of figures and text)
+%You will need to construct a phylogenetic tree using your BLAST output data. What can you infer about the species of origin of your DNA?  What data does your phylogenetic tree provide? Does it make sense - would it be likely to be found in the sample pool? 
+
+To infer a phylogenetic tree for the ORF GOS\_4466010\_20, the results from the BLASTp search against the nr protein database was used. The highest scoring 10 BLAST hits and a random selection (from the $Beta(\alpha = 1, \beta = 2)$ distribution) of 10 from the remaining significant hits were used. These sequences and the putative ORF were aligned using the T-Coffee algorithm \citep{Notredame2000a}. A maximum likelihood tree with bootstrapping was estimated using RAxML 8 \citep{Stamatakis2014a} from the multiple sequence alignment, using a $CAT$ rate of homogeneity model and the BLOSUM62 substitution matrix.
+
+The tree shows that GOS\_4466010\_20 is most closely related to bacterial species in the \textit{Alphaproteobacterium} division, with greatest homology to Candidatus \textit{Pelagibacter ubique} aminomethyltransferase proteins \ref{fig:tree}.
+The \textit{Alphaproteobacteria} are a functionally diverse class of the phylum \textit{Proteobacteria}, and predominantly consists of plant and animal pathogens, and mutualists, as well as marine dwelling bacteria \citep{Williams2007}.
+\textit{Pelagibacter ubique} is a small-sized marine bacterial species that makes up a large proportion of the ocean surface bacterioplankton population \citep{Sowell2008}.
+The apparent phylogenetic closeness of GOS\_4466010\_20 with the \textit{Alphaproteobacteria} and, more specifically, Candidatus \textit{Pelagibacter ubique} makes sense in the context of the sampling methods (Marine surface).
+
+
+\begin{figure}
+\includegraphics[width=16cm]{phylo/best_tree.pdf}
+\caption{Maximum likelihood cladogram of GOS\_4466010\_20 and a selection of BLAST results. Showing the genetic relationship of GOS\_4466010\_20-like genes with taxonomic information. Branch confidence numbers are bootstrap support values.}
+\label{fig:tree}
+\end{figure}
+
+
+\section*{Additional Resources}
+All scripts and commands used are included in a makefile and Sweave document at:
+
+\href{https://github.com/darcyabjones/BCH3BMA-annotathon}{github.com/darcyabjones/BCH3BMA-annotathon}.
+
+\noindent Raw data and conclusions were added to the Annotathon project page for annotathon code: GOS\_4466010.1.
+
+\newpage
+\bibliographystyle{harvard-bch4}
+\bibliography{projectc}
+%\addcontentsline{toc}{section}{References}
+
+
+\end{document}
+
+
+
+
+
+% % % % % % % % How to do stuff % % % % % % % %
+%
+%\parencite[hprenotei][hpostnotei]{hkeyi}
+%
+%\cite*[hprenotei][hpostnotei]{hkeyi}
+%
+%This command is provided by all author-year and author-title styles. It is similar to
+%the regular \cite command but merely prints the year or the title, respectively.
+%
+%\parencite*[hprenotei][hpostnotei]{hkeyi}
+%
+%This command is provided by all author-year and author-title styles. It is similar to
+%the regular \parencite command but merely prints the year or the title, respectively.
+%
+%\textcite[hprenotei][hpostnotei]{hkeyi}
+%\Textcite[hprenotei][hpostnotei]{hkeyi}
+
+%These citation commands are provided by all styles that ship with this package. They
+%are intended for use in the ﬂow of text, replacing the subject of a sentence. They print
+%the authors or editors followed by a citation label which is enclosed in parentheses.
+%Depending on the citation style, the label may be a number, the year of publication,
+%an abridged version of the title, or something else. The numeric and alphabetic styles
+%use square brackets instead of parentheses. In the verbose styles, the label is provided
+%in a footnote. Trailing punctuation is moved between the author or editor names
+%and the footnote mark. \Textcite is similar to \textcite but capitalizes the name
+%preﬁx of the ﬁrst name in the citation if the useprefix option is enabled, provided
+%that there is a name preﬁx.
+%
+%Figures
+%
+%\begin{figure}
+%\begin{center}
+%<<label=fig2,fig=TRUE,echo=FALSE>>=
+%out3 <- lm(y ~ x + I(x^2) + I(x^3))
+%plot(x, y)
+%curve(predict(out3, newdata=data.frame(x=x)), add = TRUE)
+%@
+%\end{center}
+%\caption{Scatter Plot with Cubic Regression Curve}
+%\label{fig:two}
+%\end{figure}
+%Figure~\ref{fig:two}
+%
+%Tables
+%
+%<<blurfle>>=
+%out2 <- lm(y ~ x + I(x^2))
+%foo <- anova(out1, out2, out3)
+%foo
+%class(foo)
+%dim(foo)
+%foo <- as.matrix(foo)
+%foo
+%@
+%So now we are ready to turn the matrix \verb@foo@
+%into Table~\ref{tab:one}
+%<<label=tab1,echo=FALSE,results=tex>>=
+%library(xtable)
+%print(xtable(foo, caption = "ANOVA Table", label = "tab:one",
+%    digits = c(0, 0, 2, 0, 2, 3, 3)), table.placement = "tbp",
+%    caption.placement = "top")
+%@
+%
+%In text number insertion.
+%
+%<<foo,echo=FALSE,results=hide>>=
+%options(scipen=10)
+%@
+%
+%\Sexpr{round(out3$coef[3], 4)}
+%\begin{texshade}{phylo/sequences_msa.fa}
+%	\seqtype{P}
+%	\dofrequencycorrection
+%	%\hidenames
+%	\gapchar{rule}
+%	\shadingmode[allmatchspecial]{similar}
+%	\shadingcolors{grays}
+%	\fingerprint{500}
+%	\setsize{names}{scriptsize}
+%	\showlegend
+%\end{texshade}
